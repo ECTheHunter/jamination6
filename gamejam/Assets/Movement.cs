@@ -27,16 +27,19 @@ public class Movement : MonoBehaviour
         CheckGround();
         if(is_grounded)
         {
-            CheckKeyPress();
             Jump();
-            rb2D.velocity = Vector2.ClampMagnitude(rb2D.velocity, max_speed);
         }
+        CheckKeyPress();
+        rb2D.velocity = new Vector2(Mathf.Clamp(rb2D.velocity.x, -max_speed, max_speed), Mathf.Clamp(rb2D.velocity.y, -max_speed, max_speed));
 
     }
     void FixedUpdate()
     {
-        SlowDown();
-        LFMovement();
+        if (is_grounded)
+        {
+            LFMovement();
+            SlowDown();
+        }
     }
     public void CheckKeyPress()
     {
