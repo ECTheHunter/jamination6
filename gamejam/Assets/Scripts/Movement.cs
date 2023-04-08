@@ -183,6 +183,6 @@ public class Movement : MonoBehaviour
     }
     public void KYSRespawn()
     {
-        GameManager.Instance.player = Instantiate(GameManager.Instance.playerprefab, GameManager.Instance.spawnpoint.transform);
+        GameManager.Instance.player = Instantiate(GameManager.Instance.playerprefab, GameManager.Instance.spawnpoint.transform.position, GameManager.Instance.spawnpoint.transform.rotation);
     }
 }
