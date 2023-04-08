@@ -126,10 +126,12 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E) && !pickedup && (collision.tag == "Pickable" || collision.tag =="DeadPlayer"))
         {
-            collision.gameObject.transform.SetParent(pickup_origin.transform, true);
+            collision.gameObject.transform.SetParent(pickup_origin.transform, false);
             animator.SetTrigger("ispickingup");
+            collision.gameObject.layer = 7;
+            collision.GetComponent<Rigidbody2D>().gravityScale = 0f;
             pickedup = true;
-            collision.transform.localPosition = Vector3.zero;
+
 
         }
     }
