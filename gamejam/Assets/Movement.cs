@@ -150,8 +150,10 @@ public class Movement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             animator.SetTrigger("iskys");
+            gameObject.tag = "DeadPlayer";
             int x = (int)UnityEngine.Random.Range(0f, 1.99f);
             animator.SetInteger("Death", x);
+            is_dead = true;
         }
     }
 }
