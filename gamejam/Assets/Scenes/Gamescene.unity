@@ -209,11 +209,13 @@ MonoBehaviour:
   slowdown_factor: 0.1
   rb2D: {fileID: 0}
   groundcheck_raycastdistance: 0.5
+  raycast_origin: {fileID: 0}
   D_held: 0
   A_held: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 1
+  animator: {fileID: 0}
 --- !u!4 &329771015
 Transform:
   m_ObjectHideFlags: 0
