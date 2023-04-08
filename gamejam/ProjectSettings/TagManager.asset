@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pickable
   - Spikes
+  - LevelEnd
   layers:
   - Default
   - TransparentFX
