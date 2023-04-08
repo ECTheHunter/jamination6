@@ -17,6 +17,8 @@ public class Movement : MonoBehaviour
     public bool A_held;
     public LayerMask layerMask;
     public Animator animator;
+    public bool pickedup;
+    public GameObject pickup_origin;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,6 @@ public class Movement : MonoBehaviour
     void Update()
     {
         CheckGround();
-        ChangeDirection();
         if (is_grounded)
         {
             Jump();
@@ -50,17 +51,6 @@ public class Movement : MonoBehaviour
         A_held = Input.GetKey(KeyCode.A);
         D_held = Input.GetKey(KeyCode.D);
     }
-    public void ChangeDirection()
-    {
-        if(rb2D.velocity.x > 0f)
-        {
-            transform.localScale = new Vector3(1f, 1f, 0f);
-        }
-        else if (rb2D.velocity.x < 0f)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 0f);
-        }
-    }
     public void LFMovement()
     {
         if(A_held)
@@ -74,6 +64,7 @@ public class Movement : MonoBehaviour
             {
                 rb2D.AddForce(dir / 3);
             }
+            transform.localScale = new Vector3(-1f, 1f, 0f);
             animator.SetBool("isrunning", true);
         }
         if(D_held)
@@ -87,6 +78,7 @@ public class Movement : MonoBehaviour
             {
                 rb2D.AddForce(dir / 3);
             }
+            transform.localScale = new Vector3(1f, 1f, 0f);
             animator.SetBool("isrunning", true);
         }
         
@@ -129,5 +121,16 @@ public class Movement : MonoBehaviour
     public void JumpEvent()
     {
         rb2D.AddForce(jump_power * Vector2.up);
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetKey(KeyCode.E) && !pickedup && (collision.tag == "Pickable" || collision.tag =="DeadPlayer"))
+        {
+            collision.gameObject.transform.SetParent(pickup_origin.transform, true);
+            animator.SetTrigger("ispickingup");
+            pickedup = true;
+            collision.transform.localPosition = Vector3.zero;
+
+        }
     }
 }
