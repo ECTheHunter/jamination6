@@ -5,21 +5,26 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [Header("Movement")]
     public float acceleration_speed;
     public float max_speed;
     public float jump_power;
     public bool is_grounded;
     public float slowdown_factor;
-    public Rigidbody2D rb2D;
     public float groundcheck_raycastdistance;
+    [Header("Components")]
     public GameObject raycast_origin;
+    public Rigidbody2D rb2D;
+    public Animator animator;
+    [Header("States")]
+    public float throw_power;
     public bool D_held;
     public bool A_held;
-    public LayerMask layerMask;
-    public Animator animator;
     public bool pickedup;
-    public GameObject pickup_origin;
     public bool is_dead;
+
+    public GameObject pickup_origin;
+    public LayerMask layerMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -115,6 +120,8 @@ public class Movement : MonoBehaviour
             is_grounded = true;
             if(hit.transform.tag == "Spikes")
             {
+                animator.SetTrigger("hedead");
+                gameObject.tag = "Pickable";
                 is_dead = true;
             }
         }
@@ -148,6 +155,12 @@ public class Movement : MonoBehaviour
             }
         }
         
+    }
+    public void Throw()
+    {
+        GameObject gameObject = pickup_origin.GetComponentInChildren<GameObject>();
+        gameObject.transform.parent = null;
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f, 0.3f) * throw_power);
     }
     public void KYS()
     {
