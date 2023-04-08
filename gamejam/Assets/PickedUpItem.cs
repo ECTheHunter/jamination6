@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class PickedUpItem : MonoBehaviour
 {
-    public bool is_dead;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +13,9 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (is_dead)
+        if(transform.parent != null)
         {
-            StartCoroutine(YouShouldKillYourselfNOW());
+            transform.position = transform.parent.position;
         }
-    }
-    public IEnumerator YouShouldKillYourselfNOW()
-    {
-        yield return null;
     }
 }
