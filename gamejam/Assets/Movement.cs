@@ -156,4 +156,8 @@ public class Movement : MonoBehaviour
             is_dead = true;
         }
     }
+    public void KYSRespawn()
+    {
+        GameManager.Instance.player = Instantiate(GameManager.Instance.playerprefab, GameManager.Instance.spawnpoint.transform);
+    }
 }

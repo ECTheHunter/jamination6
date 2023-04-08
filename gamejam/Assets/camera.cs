@@ -12,6 +12,7 @@ public class camera : MonoBehaviour
   
     void Update()
     {
+        target = GameManager.Instance.player.transform;
         Vector3 targetPosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime); 
     }
