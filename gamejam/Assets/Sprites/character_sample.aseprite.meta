@@ -71,7 +71,7 @@ ScriptedImporter:
   previousAsepriteImporterSettings:
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     generateModelPrefab: 1
@@ -81,7 +81,7 @@ ScriptedImporter:
   asepriteImporterSettings:
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     generateModelPrefab: 1
@@ -115,8 +115,8 @@ ScriptedImporter:
   multiSpriteImportData:
   - name: character_sample
     originalName: 
-    pivot: {x: 1.3000001, y: 0}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -124,7 +124,7 @@ ScriptedImporter:
       y: 4
       width: 10
       height: 14
-    spriteID: e8ae70497139afe4c93dc3f27f12b0f3
+    spriteID: 1c7fac4a936eaa04598af7142294360b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,7 +147,7 @@ ScriptedImporter:
         y: 0
         width: 10
         height: 14
-      spriteId: e8ae70497139afe4c93dc3f27f12b0f3
+      spriteId: 1c7fac4a936eaa04598af7142294360b
     linkedCells: []
     parentIndex: -1
   platformSettings: []
