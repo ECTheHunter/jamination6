@@ -16,21 +16,21 @@ public class Movement : MonoBehaviour
     public bool D_held;
     public bool A_held;
     public LayerMask layerMask;
-    public SpriteRenderer sr;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckGround();
-        if(is_grounded)
+        ChangeDirection();
+        if (is_grounded)
         {
-            ChangeDirection();
             Jump();
         }
         CheckKeyPress();
@@ -41,9 +41,9 @@ public class Movement : MonoBehaviour
     {
         if (is_grounded)
         {
-            LFMovement();
             SlowDown();
         }
+        LFMovement();
     }
     public void CheckKeyPress()
     {
@@ -54,11 +54,11 @@ public class Movement : MonoBehaviour
     {
         if(rb2D.velocity.x > 0f)
         {
-            transform.localScale = new Vector3(5f, 5f, 0f);
+            transform.localScale = new Vector3(1f, 1f, 0f);
         }
         else if (rb2D.velocity.x < 0f)
         {
-            transform.localScale = new Vector3(-5f, 5f, 0f);
+            transform.localScale = new Vector3(-1f, 1f, 0f);
         }
     }
     public void LFMovement()
@@ -66,13 +66,30 @@ public class Movement : MonoBehaviour
         if(A_held)
         {
             Vector2 dir = acceleration_speed * Time.deltaTime * Vector2.left;
-            rb2D.AddForce(dir);
+            if (is_grounded)
+            {
+                rb2D.AddForce(dir);
+            }
+            else
+            {
+                rb2D.AddForce(dir / 3);
+            }
+            animator.SetBool("isrunning", true);
         }
         if(D_held)
         {
             Vector2 dir = acceleration_speed * Time.deltaTime * Vector2.right;
-            rb2D.AddForce(dir);
+            if (is_grounded)
+            {
+                rb2D.AddForce(dir);
+            }
+            else
+            {
+                rb2D.AddForce(dir / 3);
+            }
+            animator.SetBool("isrunning", true);
         }
+        
     }
     public void SlowDown()
     {
@@ -82,6 +99,11 @@ public class Movement : MonoBehaviour
             {
                 rb2D.velocity += -rb2D.velocity * slowdown_factor;
             }
+            else
+            {
+                animator.SetBool("isrunning", false);
+            }
+            
         }
 
     }
