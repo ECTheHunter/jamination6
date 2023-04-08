@@ -12,13 +12,16 @@ public class Movement : MonoBehaviour
     public float slowdown_factor;
     public Rigidbody2D rb2D;
     public float groundcheck_raycastdistance;
+    public GameObject raycast_origin;
     public bool D_held;
     public bool A_held;
     public LayerMask layerMask;
+    public SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -27,6 +30,7 @@ public class Movement : MonoBehaviour
         CheckGround();
         if(is_grounded)
         {
+            ChangeDirection();
             Jump();
         }
         CheckKeyPress();
@@ -45,6 +49,17 @@ public class Movement : MonoBehaviour
     {
         A_held = Input.GetKey(KeyCode.A);
         D_held = Input.GetKey(KeyCode.D);
+    }
+    public void ChangeDirection()
+    {
+        if(rb2D.velocity.x > 0f)
+        {
+            transform.localScale = new Vector3(5f, 5f, 0f);
+        }
+        else if (rb2D.velocity.x < 0f)
+        {
+            transform.localScale = new Vector3(-5f, 5f, 0f);
+        }
     }
     public void LFMovement()
     {
@@ -72,7 +87,7 @@ public class Movement : MonoBehaviour
     }
     public void CheckGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(raycast_origin.transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
         if(hit.collider != null)
         {
             is_grounded = true;
