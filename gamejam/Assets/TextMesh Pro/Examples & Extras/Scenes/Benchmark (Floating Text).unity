@@ -457,6 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnType: 0
   NumberOfNPC: 250
+  IsTextObjectScaleStatic: 0
 --- !u!4 &2142710355
 Transform:
   m_ObjectHideFlags: 0
