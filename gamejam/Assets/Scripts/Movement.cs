@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
             {
                 Jump();
                 KYS();
+                Throw();
             }
             CheckKeyPress();
             rb2D.velocity = new Vector2(Mathf.Clamp(rb2D.velocity.x, -max_speed, max_speed), Mathf.Clamp(rb2D.velocity.y, -max_speed, max_speed));
@@ -168,7 +169,11 @@ public class Movement : MonoBehaviour
     {
         if(pickedup)
         {
-            animator.SetTrigger("isthrowing");
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                animator.SetTrigger("isthrowing");
+            }
+
         }
     }
     public void ThrowEvent()
