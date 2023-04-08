@@ -15,7 +15,7 @@ public class PickedUpItem : MonoBehaviour
     {
         if(transform.parent != null)
         {
-            transform.position = transform.parent.position;
+            transform.position = transform.parent.position + new Vector3(0f, 0.3f, 0f);
         }
     }
 }
