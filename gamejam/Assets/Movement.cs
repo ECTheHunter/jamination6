@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class Movement : MonoBehaviour
     public Animator animator;
     public bool pickedup;
     public GameObject pickup_origin;
+    public bool is_dead;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,22 +30,29 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckGround();
-        if (is_grounded)
+        if (!is_dead)
         {
-            Jump();
-        }
-        CheckKeyPress();
-        rb2D.velocity = new Vector2(Mathf.Clamp(rb2D.velocity.x, -max_speed, max_speed), Mathf.Clamp(rb2D.velocity.y, -max_speed, max_speed));
+            CheckGround();
+            if (is_grounded)
+            {
+                Jump();
+                KYS();
+            }
+            CheckKeyPress();
+            rb2D.velocity = new Vector2(Mathf.Clamp(rb2D.velocity.x, -max_speed, max_speed), Mathf.Clamp(rb2D.velocity.y, -max_speed, max_speed));
 
+        }
     }
     void FixedUpdate()
     {
-        if (is_grounded)
+        if (!is_dead)
         {
-            SlowDown();
+            if (is_grounded)
+            {
+                SlowDown();
+            }
+            LFMovement();
         }
-        LFMovement();
     }
     public void CheckKeyPress()
     {
@@ -121,17 +130,28 @@ public class Movement : MonoBehaviour
     {
         rb2D.AddForce(jump_power * Vector2.up);
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKey(KeyCode.E) && !pickedup && (collision.tag == "Pickable" || collision.tag =="DeadPlayer"))
+        if (!is_dead)
         {
-            collision.gameObject.transform.SetParent(pickup_origin.transform, false);
-            animator.SetTrigger("ispickingup");
-            collision.gameObject.layer = 7;
-            collision.GetComponent<Rigidbody2D>().gravityScale = 0f;
-            pickedup = true;
-
-
+            if (Input.GetKey(KeyCode.E) && !pickedup && (collision.tag == "Pickable" || collision.tag == "DeadPlayer"))
+            {
+                collision.gameObject.transform.SetParent(pickup_origin.transform, false);
+                animator.SetTrigger("ispickingup");
+                collision.gameObject.layer = 7;
+                collision.GetComponent<Rigidbody2D>().gravityScale = 0f;
+                pickedup = true;
+            }
+        }
+        
+    }
+    public void KYS()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            animator.SetTrigger("iskys");
+            int x = (int)UnityEngine.Random.Range(0f, 1.99f);
+            animator.SetInteger("Death", x);
         }
     }
 }
