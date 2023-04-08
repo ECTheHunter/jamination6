@@ -134,7 +134,7 @@ public class Movement : MonoBehaviour
     {
         if (!is_dead)
         {
-            if (Input.GetKey(KeyCode.E) && !pickedup && (collision.tag == "Pickable" || collision.tag == "DeadPlayer"))
+            if (Input.GetKey(KeyCode.E) && !pickedup && collision.tag == "Pickable")
             {
                 collision.gameObject.transform.SetParent(pickup_origin.transform, false);
                 animator.SetTrigger("ispickingup");
@@ -150,7 +150,7 @@ public class Movement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             animator.SetTrigger("iskys");
-            gameObject.tag = "DeadPlayer";
+            gameObject.tag = "Pickable";
             int x = (int)UnityEngine.Random.Range(0f, 1.99f);
             animator.SetInteger("Death", x);
             is_dead = true;

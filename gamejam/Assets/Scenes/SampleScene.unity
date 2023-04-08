@@ -555,6 +555,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3909831303422411735, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
   m_PrefabInstance: {fileID: 6563722701959733210}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1802928213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035475250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c675b2f684b6b34485daa2f23587c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1986522074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -904,7 +916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3909831303422411735, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.43
+      value: -2.421
       objectReference: {fileID: 0}
     - target: {fileID: 3909831303422411735, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
       propertyPath: m_LocalPosition.y
@@ -947,12 +959,28 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5576987
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7608602
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0030565262
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.43322694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.5
+      value: 1.2703102
       objectReference: {fileID: 0}
     - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.7
+      value: 1.5999999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
