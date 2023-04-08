@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour
     public float acceleration_speed;
     public float max_speed;
     public float jump_power;
-    public bool is_dead;
     public bool is_grounded;
     public float slowdown_factor;
     public Rigidbody2D rb2D;
