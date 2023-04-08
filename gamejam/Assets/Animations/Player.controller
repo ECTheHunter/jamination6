@@ -95,7 +95,6 @@ AnimatorState:
   - {fileID: 5966664676052156259}
   - {fileID: 1236597740933130181}
   - {fileID: 160151399819764683}
-  - {fileID: -2255058257721940529}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -132,15 +131,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 7399761989522660528}
     m_Position: {x: 320, y: -40, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -7984829796515882178}
-    m_Position: {x: 260, y: 240, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 8209573860774812641}
-    m_Position: {x: 160, y: 340, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3513293642430192318}
-    m_Position: {x: 460, y: 330, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -190,31 +180,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isjumping
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ispickingup
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: iskys
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Death
-    m_Type: 3
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
