@@ -166,8 +166,18 @@ public class Movement : MonoBehaviour
     }
     public void Throw()
     {
+        if(pickedup)
+        {
+            animator.SetTrigger("isthrowing");
+        }
+    }
+    public void ThrowEvent()
+    {
         GameObject gameObject = pickup_origin.GetComponentInChildren<GameObject>();
         gameObject.transform.parent = null;
+        gameObject.gameObject.layer = 0;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 1f;
+        pickedup = false;
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f, 0.3f) * throw_power);
     }
     public void KYS()
