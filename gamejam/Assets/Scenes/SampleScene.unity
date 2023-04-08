@@ -220,6 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae5ab9d2ae7a0642a71e5083e352a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: -10}
+  smoothTime: 0.1
   target: {fileID: 1802928207}
 --- !u!1 &813918508
 GameObject:
@@ -803,6 +805,30 @@ PrefabInstance:
     - target: {fileID: 4300788477281545138, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5656582
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7403156
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.011631429
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.008988887
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563722699990807309, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3a4cdb4005da574c91a9cc658b1da81, type: 3}
