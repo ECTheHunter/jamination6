@@ -123,7 +123,11 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb2D.AddForce(jump_power * Vector2.up);
+            animator.SetTrigger("isjumping");
         }
+    }
+    public void JumpEvent()
+    {
+        rb2D.AddForce(jump_power * Vector2.up);
     }
 }
