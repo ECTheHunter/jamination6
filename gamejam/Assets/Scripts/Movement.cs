@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -155,6 +156,13 @@ public class Movement : MonoBehaviour
             }
         }
         
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "LevelEnd")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
     public void Throw()
     {
