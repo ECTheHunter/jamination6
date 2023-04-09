@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class camera : MonoBehaviour
 {
-    public Vector3 offset;
+    public Vector3 offset = new Vector3(0f, 0f, -10f);
     public float smoothTime;
     private Vector3 velocity = Vector3.zero;
 
