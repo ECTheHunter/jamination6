@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,7 +24,8 @@ public class Movement : MonoBehaviour
     public bool A_held;
     public bool pickedup;
     public bool is_dead;
-
+    public GameObject raycast2_origin;
+    public GameObject raycast3_origin;
     public GameObject pickup_origin;
     public LayerMask layerMask;
     // Start is called before the first frame update
@@ -125,6 +127,51 @@ public class Movement : MonoBehaviour
                 animator.SetTrigger("hedead");
                 gameObject.tag = "Pickable";
                 is_dead = true;
+                gameObject.layer = 0;
+                transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                KYSRespawn();
+            }
+        }
+        else
+        {
+            is_grounded = false;
+        }
+    }
+    public void CheckGround2()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(raycast2_origin.transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
+        if (hit.collider != null)
+        {
+            is_grounded = true;
+            if (hit.transform.tag == "Spikes")
+            {
+                animator.SetTrigger("hedead");
+                gameObject.tag = "Pickable";
+                is_dead = true;
+                gameObject.layer = 0;
+                transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                KYSRespawn();
+            }
+        }
+        else
+        {
+            is_grounded = false;
+        }
+    }
+    public void CheckGround3()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(raycast3_origin.transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
+        if (hit.collider != null)
+        {
+            is_grounded = true;
+            if (hit.transform.tag == "Spikes")
+            {
+                animator.SetTrigger("hedead");
+                gameObject.tag = "Pickable";
+                is_dead = true;
+                gameObject.layer = 0;
+                transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                KYSRespawn();
             }
         }
         else
@@ -147,13 +194,14 @@ public class Movement : MonoBehaviour
     {
         if (!is_dead)
         {
-            if (Input.GetKey(KeyCode.E) && !pickedup && collision.tag == "Pickable")
+            if (Input.GetKey(KeyCode.E) && !pickedup && collision.tag == "Pickable" && !animator.GetBool("isrunning"))
             {
                 collision.gameObject.transform.SetParent(pickup_origin.transform, false);
                 animator.SetTrigger("ispickingup");
                 collision.gameObject.layer = 7;
                 collision.GetComponent<Rigidbody2D>().gravityScale = 0f;
                 pickedup = true;
+
             }
         }
         
@@ -167,30 +215,36 @@ public class Movement : MonoBehaviour
     }
     public void Throw()
     {
-        if(pickedup)
+        if(pickedup && !animator.GetBool("isrunning"))
         {
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.R))
             {
+
                 animator.SetTrigger("isthrowing");
+                StartCoroutine(ThrowEvent());
             }
 
         }
     }
-    public void ThrowEvent()
+    public IEnumerator ThrowEvent()
     {
-        GameObject gameObject = pickup_origin.GetComponentInChildren<GameObject>();
-        gameObject.transform.parent = null;
-        gameObject.gameObject.layer = 0;
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = 1f;
-        pickedup = false;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f, 0.3f) * throw_power);
+        Transform ctransform = pickup_origin.transform.GetChild(0);
+        ctransform.parent = null;
+        yield return new WaitForSeconds(0.1f);
+        ctransform.gameObject.layer = 0;
+        yield return new WaitForSeconds(0.1f);
+        ctransform.GetComponent<Rigidbody2D>().gravityScale = 1f;
+        yield return new WaitForSeconds(0.1f);
+        ctransform.GetComponent<Rigidbody2D>().AddForce((pickup_origin.transform.position - gameObject.transform.position).normalized * new Vector2(1f,0.3f) * throw_power);
+        yield return null;
     }
     public void KYS()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) && !animator.GetBool("isrunning") && !pickedup)
         {
             animator.SetTrigger("iskys");
             gameObject.tag = "Pickable";
+            gameObject.layer = 0;
             int x = (int)UnityEngine.Random.Range(0f, 1.99f);
             animator.SetInteger("Death", x);
             is_dead = true;
