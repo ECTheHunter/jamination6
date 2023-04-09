@@ -212,6 +212,11 @@ public class Movement : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+        else if(collision.tag == "DeathWall")
+        {
+            KYSRespawn();
+            Destroy(gameObject);
+        }
     }
     public void Throw()
     {
@@ -236,6 +241,7 @@ public class Movement : MonoBehaviour
         ctransform.GetComponent<Rigidbody2D>().gravityScale = 1f;
         yield return new WaitForSeconds(0.1f);
         ctransform.GetComponent<Rigidbody2D>().AddForce((pickup_origin.transform.position - gameObject.transform.position).normalized * new Vector2(1f,0.3f) * throw_power);
+        pickedup = false;
         yield return null;
     }
     public void KYS()
