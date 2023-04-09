@@ -7,12 +7,12 @@ public class menu : MonoBehaviour
 {
     public void Play_Button()
     {
-      SceneManager.LoadScene(1);
+      SceneManager.LoadScene(2);
 
     }
     public void Controls_Button()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
 
