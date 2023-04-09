@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -214,24 +215,28 @@ public class Movement : MonoBehaviour
     }
     public void Throw()
     {
-        if(pickedup)
+        if(pickedup && !animator.GetBool("isrunning"))
         {
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.R))
             {
+
                 animator.SetTrigger("isthrowing");
-                ThrowEvent();
+                StartCoroutine(ThrowEvent());
             }
 
         }
     }
-    public void ThrowEvent()
+    public IEnumerator ThrowEvent()
     {
-        GameObject gameObject = pickup_origin.GetComponentInChildren<GameObject>();
-        gameObject.transform.parent = null;
-        gameObject.gameObject.layer = 0;
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = 1f;
-        pickedup = false;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f, 0.3f) * throw_power);
+        Transform ctransform = pickup_origin.transform.GetChild(0);
+        ctransform.parent = null;
+        yield return new WaitForSeconds(0.1f);
+        ctransform.gameObject.layer = 0;
+        yield return new WaitForSeconds(0.1f);
+        ctransform.GetComponent<Rigidbody2D>().gravityScale = 1f;
+        yield return new WaitForSeconds(0.1f);
+        ctransform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 1f) * throw_power);
+        yield return null;
     }
     public void KYS()
     {
