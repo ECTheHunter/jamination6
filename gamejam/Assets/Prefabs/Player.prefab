@@ -293,8 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c88e35c6e62c94f8c5fce474246dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration_speed: 250
-  max_speed: 10
+  acceleration_speed: 225
+  max_speed: 8
   jump_power: 175
   is_grounded: 0
   slowdown_factor: 0.1
@@ -302,7 +302,7 @@ MonoBehaviour:
   raycast_origin: {fileID: 6563722700368297283}
   rb2D: {fileID: 0}
   animator: {fileID: 0}
-  throw_power: 250
+  throw_power: 275
   D_held: 0
   A_held: 0
   pickedup: 0

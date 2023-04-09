@@ -199,7 +199,7 @@ public class Movement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "LevelEnd")
+        if(collision.tag == "LevelEnd" && !is_dead)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -208,8 +208,9 @@ public class Movement : MonoBehaviour
             if(!is_dead)
             {
                 KYSRespawn();
-                Destroy(gameObject);
+
             }
+            Destroy(gameObject);
 
         }
     }
@@ -235,7 +236,7 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         ctransform.GetComponent<Rigidbody2D>().gravityScale = 1f;
         yield return new WaitForSeconds(0.1f);
-        ctransform.GetComponent<Rigidbody2D>().AddForce((pickup_origin.transform.position - gameObject.transform.position).normalized * new Vector2(1f,0.3f) * throw_power);
+        ctransform.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.localScale.x, 0.5f) * throw_power);
         pickedup = false;
         yield return null;
     }
