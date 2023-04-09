@@ -235,7 +235,7 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         ctransform.GetComponent<Rigidbody2D>().gravityScale = 1f;
         yield return new WaitForSeconds(0.1f);
-        ctransform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 1f) * throw_power);
+        ctransform.GetComponent<Rigidbody2D>().AddForce((pickup_origin.transform.position - gameObject.transform.position).normalized * new Vector2(1f,0.3f) * throw_power);
         yield return null;
     }
     public void KYS()
