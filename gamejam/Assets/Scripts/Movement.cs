@@ -119,7 +119,9 @@ public class Movement : MonoBehaviour
     public void CheckGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(raycast_origin.transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
-        if(hit.collider != null)
+        RaycastHit2D hit2 = Physics2D.Raycast(raycast2_origin.transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
+        RaycastHit2D hit3 = Physics2D.Raycast(raycast3_origin.transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
+        if (hit.collider != null)
         {
             is_grounded = true;
             if(hit.transform.tag == "Spikes")
@@ -131,19 +133,12 @@ public class Movement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, 0f, -90f);
                 KYSRespawn();
             }
+            return;
         }
-        else
-        {
-            is_grounded = false;
-        }
-    }
-    public void CheckGround2()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(raycast2_origin.transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
-        if (hit.collider != null)
+        else if (hit2.collider != null)
         {
             is_grounded = true;
-            if (hit.transform.tag == "Spikes")
+            if (hit2.transform.tag == "Spikes")
             {
                 animator.SetTrigger("hedead");
                 gameObject.tag = "Pickable";
@@ -152,19 +147,12 @@ public class Movement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, 0f, -90f);
                 KYSRespawn();
             }
+            return;
         }
-        else
-        {
-            is_grounded = false;
-        }
-    }
-    public void CheckGround3()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(raycast3_origin.transform.position, Vector2.down, groundcheck_raycastdistance, layerMask);
-        if (hit.collider != null)
+        else if (hit3.collider != null)
         {
             is_grounded = true;
-            if (hit.transform.tag == "Spikes")
+            if (hit3.transform.tag == "Spikes")
             {
                 animator.SetTrigger("hedead");
                 gameObject.tag = "Pickable";
@@ -173,7 +161,10 @@ public class Movement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, 0f, -90f);
                 KYSRespawn();
             }
+            return;
         }
+
+
         else
         {
             is_grounded = false;
@@ -214,8 +205,12 @@ public class Movement : MonoBehaviour
         }
         else if(collision.tag == "DeathWall")
         {
-            KYSRespawn();
-            Destroy(gameObject);
+            if(!is_dead)
+            {
+                KYSRespawn();
+                Destroy(gameObject);
+            }
+
         }
     }
     public void Throw()

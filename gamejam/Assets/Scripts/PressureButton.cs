@@ -10,6 +10,7 @@ public class PressureButton : MonoBehaviour
     public GameObject closed;
     public GameObject open;
     public LayerMask layerMask;
+    public GameObject bridge;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +33,14 @@ public class PressureButton : MonoBehaviour
         {
             open.SetActive(false);
             closed.SetActive(true);
+            bridge.SetActive(true);
         }
         else
         {
             closed.SetActive(false);
             open.SetActive(true);
-
+            bridge.SetActive(false);
         }
+
     }
 }

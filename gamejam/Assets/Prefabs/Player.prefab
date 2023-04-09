@@ -293,9 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c88e35c6e62c94f8c5fce474246dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration_speed: 200
-  max_speed: 5
-  jump_power: 125
+  acceleration_speed: 250
+  max_speed: 10
+  jump_power: 175
   is_grounded: 0
   slowdown_factor: 0.1
   groundcheck_raycastdistance: 0.5
